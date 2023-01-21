@@ -3,4 +3,5 @@
 - [ ] rich object 이용
 - [ ] social login
 - [ ] querydsl
+- [ ] error handler 다시 정리
 
