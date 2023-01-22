@@ -4,8 +4,8 @@ import com.kyuwon.spring.domain.user.domain.UserAccount;
 import com.kyuwon.spring.domain.user.model.Address;
 import com.kyuwon.spring.domain.user.repository.UserRepository;
 import com.kyuwon.spring.domain.user.dto.response.SignUpResponse;
-import com.kyuwon.spring.global.common.exception.BusinessException;
-import com.kyuwon.spring.global.common.api.ErrorCode;
+import com.kyuwon.spring.global.common.error.exception.BusinessException;
+import com.kyuwon.spring.global.common.error.exception.ErrorCode;
 import com.kyuwon.spring.domain.user.model.Authority;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -55,7 +55,7 @@ public class SignUpService {
     private void validateDuplicateEmail(String email) {
         Optional<UserAccount> user = userRepository.findByEmail(email);
         if(!user.isEmpty()) {
-            throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
+            throw new BusinessException(ErrorCode.EMAIL_DUPLICATION);
         }
     }
 }

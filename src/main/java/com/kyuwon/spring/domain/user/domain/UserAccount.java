@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "user_account", indexes = {
         @Index(columnList = "email")
 })
-@EqualsAndHashCode(of = {"id"})
+@EqualsAndHashCode(of = {"id"}, callSuper = true)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class UserAccount extends BaseEntity
