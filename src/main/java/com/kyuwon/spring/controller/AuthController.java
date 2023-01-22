@@ -18,11 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
-public static class AuthController {
+public class AuthController {
     private final SignUpService signUpService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponse<SignUpResponse>> signUp (@RequestBody SignUpRequest request) {
+    public ResponseEntity<ApiResponse<SignUpResponse>> signUp(@RequestBody SignUpRequest request) {
         SignUpResponse user = signUpService.saveUser(
                 request.name(),
                 request.email(),
@@ -34,5 +34,6 @@ public static class AuthController {
         );
         return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse(ResponseCode.USER_CREATED, user));
     }
+}
 
 
