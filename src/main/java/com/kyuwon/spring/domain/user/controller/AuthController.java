@@ -1,10 +1,10 @@
-package com.kyuwon.spring.controller;
+package com.kyuwon.spring.domain.user.controller;
 
-import com.kyuwon.spring.dto.request.SignUpRequest;
-import com.kyuwon.spring.dto.response.ApiResponse;
-import com.kyuwon.spring.dto.response.ResponseCode;
-import com.kyuwon.spring.dto.response.SignUpResponse;
-import com.kyuwon.spring.service.SignUpService;
+import com.kyuwon.spring.domain.user.dto.request.SignUpRequest;
+import com.kyuwon.spring.global.common.api.ApiResponse;
+import com.kyuwon.spring.global.common.api.ResponseCode;
+import com.kyuwon.spring.domain.user.dto.response.SignUpResponse;
+import com.kyuwon.spring.domain.user.service.SignUpService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package com.kyuwon.spring.dto.response;
+package com.kyuwon.spring.global.common.api;
 
 
 import lombok.Getter;

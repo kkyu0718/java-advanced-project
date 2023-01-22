@@ -1,7 +1,8 @@
-package com.kyuwon.spring.domain;
+package com.kyuwon.spring.domain.user.domain;
 
-import com.kyuwon.spring.model.Address;
-import com.kyuwon.spring.model.Authority;
+import com.kyuwon.spring.domain.user.model.Address;
+import com.kyuwon.spring.domain.user.model.Authority;
+import com.kyuwon.spring.global.common.entity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

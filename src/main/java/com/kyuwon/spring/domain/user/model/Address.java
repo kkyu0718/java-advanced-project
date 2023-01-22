@@ -1,4 +1,4 @@
-package com.kyuwon.spring.model;
+package com.kyuwon.spring.domain.user.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

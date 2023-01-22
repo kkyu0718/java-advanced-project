@@ -1,6 +1,6 @@
-package com.kyuwon.spring.repository;
+package com.kyuwon.spring.domain.user.repository;
 
-import com.kyuwon.spring.domain.UserAccount;
+import com.kyuwon.spring.domain.user.domain.UserAccount;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

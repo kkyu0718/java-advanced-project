@@ -1,5 +1,7 @@
-package com.kyuwon.spring.exception;
+package com.kyuwon.spring.global.common.exception;
 
+import com.kyuwon.spring.global.common.api.ErrorCode;
+import com.kyuwon.spring.global.common.api.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;

@@ -1,7 +1,7 @@
-package com.kyuwon.spring.dto.response;
+package com.kyuwon.spring.domain.user.dto.response;
 
-import com.kyuwon.spring.domain.UserAccount;
-import com.kyuwon.spring.model.Address;
+import com.kyuwon.spring.domain.user.domain.UserAccount;
+import com.kyuwon.spring.domain.user.model.Address;
 
 public record SignUpResponse(
         String email,
