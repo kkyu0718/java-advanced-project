@@ -1,4 +1,4 @@
-package com.kyuwon.spring.config;
+package com.kyuwon.spring.global.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.kyuwon.spring.dto.request;
+package com.kyuwon.spring.domain.user.dto.request;
 
 public record SignUpRequest(
         String email,

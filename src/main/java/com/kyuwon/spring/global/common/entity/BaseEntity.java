@@ -1,4 +1,4 @@
-package com.kyuwon.spring.domain;
+package com.kyuwon.spring.global.common.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;

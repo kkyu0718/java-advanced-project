@@ -1,12 +1,12 @@
-package com.kyuwon.spring.service;
+package com.kyuwon.spring.domain.user.service;
 
-import com.kyuwon.spring.domain.UserAccount;
-import com.kyuwon.spring.dto.response.SignUpResponse;
-import com.kyuwon.spring.exception.BusinessException;
-import com.kyuwon.spring.exception.ErrorCode;
-import com.kyuwon.spring.model.Address;
-import com.kyuwon.spring.model.Authority;
-import com.kyuwon.spring.repository.UserRepository;
+import com.kyuwon.spring.domain.user.domain.UserAccount;
+import com.kyuwon.spring.domain.user.model.Address;
+import com.kyuwon.spring.domain.user.repository.UserRepository;
+import com.kyuwon.spring.domain.user.dto.response.SignUpResponse;
+import com.kyuwon.spring.global.common.exception.BusinessException;
+import com.kyuwon.spring.global.common.api.ErrorCode;
+import com.kyuwon.spring.domain.user.model.Authority;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

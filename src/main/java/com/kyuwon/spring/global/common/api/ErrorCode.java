@@ -1,4 +1,4 @@
-package com.kyuwon.spring.exception;
+package com.kyuwon.spring.global.common.api;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
