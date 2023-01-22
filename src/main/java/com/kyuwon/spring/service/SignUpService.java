@@ -9,7 +9,6 @@ import com.kyuwon.spring.model.Authority;
 import com.kyuwon.spring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,6 @@ import java.util.Set;
 @Service
 public class SignUpService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public SignUpResponse saveUser(
@@ -44,7 +42,7 @@ public class SignUpService {
         UserAccount userAccount = UserAccount.builder()
                 .name(name)
                 .email(email)
-                .password(passwordEncoder.encode(password))
+                .password("encoded password")
                 .authorities(Set.of(Authority.USER))
                 .address(address)
                 .build();
