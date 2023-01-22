@@ -55,7 +55,7 @@ public class SignUpService {
     private void validateDuplicateEmail(String email) {
         Optional<UserAccount> user = userRepository.findByEmail(email);
         if(!user.isEmpty()) {
-            throw new BusinessException(ErrorCode.DUPLICATED_EMAIL);
+            throw new BusinessException(ErrorCode.EMAIL_DUPLICATION);
         }
     }
 }
