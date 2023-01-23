@@ -10,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class Address {
-    @Column(name = "address")
+
     @Setter
     private String country;
 

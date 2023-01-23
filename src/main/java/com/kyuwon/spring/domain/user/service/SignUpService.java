@@ -9,6 +9,7 @@ import com.kyuwon.spring.global.common.error.exception.ErrorCode;
 import com.kyuwon.spring.domain.user.model.Authority;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -21,6 +22,7 @@ import java.util.Set;
 @Service
 public class SignUpService {
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public SignUpResponse saveUser(
@@ -42,8 +44,8 @@ public class SignUpService {
         UserAccount userAccount = UserAccount.builder()
                 .name(name)
                 .email(email)
-                .password("encoded password")
-                .authorities(Set.of(Authority.USER))
+                .password(passwordEncoder.encode(password))
+                .authority(Authority.USER)
                 .address(address)
                 .build();
 

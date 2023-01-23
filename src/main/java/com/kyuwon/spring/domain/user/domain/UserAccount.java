@@ -21,18 +21,18 @@ public class UserAccount extends BaseEntity
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Setter @Column(nullable = false, length = 50) private String email;
-    @Setter @Column(nullable = false, length = 200) private String password;
-    @Setter @Column(nullable = false, length = 30) private String name;
-    @Embedded @Column(length = 300) private Address address;
-    @ElementCollection(fetch = FetchType.EAGER) @Column(nullable = false, length = 50) @Enumerated(EnumType.STRING) private Set<Authority> authorities;
-    @Setter @Column(length=300) private String refreshToken;
+    @Setter @Column(nullable = false, length = 50, name = "email") private String email;
+    @Setter @Column(nullable = false, length = 200, name = "password") private String password;
+    @Setter @Column(nullable = false, length = 30, name = "name") private String name;
+    @Embedded @Column(length = 300, name = "address") private Address address;
+    @Column(nullable = false, length = 50, name = "authority") @Enumerated(EnumType.STRING) private Authority authority;
+    @Setter @Column(length=300, name = "refresh_token") private String refreshToken;
     @Builder
-    public UserAccount(String email, String password, String name, Address address, Set<Authority> authorities, String refreshToken) {
+    public UserAccount(String email, String password, String name, Address address, Authority authority) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.address = address;
-        this.authorities = authorities;
+        this.authority = authority;
     }
 }
