@@ -2,9 +2,9 @@ package com.kyuwon.spring.global.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kyuwon.spring.domain.user.repository.UserRepository;
+import com.kyuwon.spring.domain.user.service.UserFindService;
 import com.kyuwon.spring.global.config.security.handler.JwtAccessDeniedHandler;
 import com.kyuwon.spring.global.config.security.handler.JwtAuthenticationEntryPointHandler;
-import com.kyuwon.spring.global.config.security.handler.JwtLogoutHandler;
 import com.kyuwon.spring.global.config.security.jwt.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationContext;
@@ -52,8 +52,7 @@ public class SecurityConfig {
             HttpSecurity httpSecurity,
             JwtAuthenticationFilter jwtAuthenticationFilter,
             JwtAuthenticationEntryPointHandler jwtAuthenticationEntryPointHandler,
-            JwtAccessDeniedHandler jwtAccessDeniedHandler,
-            JwtLogoutHandler jwtLogoutHandler
+            JwtAccessDeniedHandler jwtAccessDeniedHandler
     ) throws Exception {
         return httpSecurity
                 .cors()
@@ -74,8 +73,6 @@ public class SecurityConfig {
                         // 인증 o 권한 x
                         .accessDeniedHandler(jwtAccessDeniedHandler)
                 )
-
-                .logout(logout -> logout.addLogoutHandler(jwtLogoutHandler))
 
                 .authorizeHttpRequests(antz -> antz
                         .requestMatchers(HttpMethod.GET, GET_PERMITTED_URLS).permitAll()
@@ -120,13 +117,8 @@ public class SecurityConfig {
 
 
     @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
-        return new JwtAuthenticationFilter(jwtTokenProvider);
-    }
-
-    @Bean
-    public JwtLogoutHandler jwtLogoutHandler(JwtTokenProvider jwtTokenProvider, UserRepository userRepository) {
-        return new JwtLogoutHandler(jwtTokenProvider, userRepository);
+    public JwtAuthenticationFilter jwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider, UserFindService userFindService) {
+        return new JwtAuthenticationFilter(jwtTokenProvider, userFindService);
     }
 
 }

@@ -20,7 +20,7 @@ import java.util.Optional;
 @Service
 public class LoginService {
     private final UserFindService userFindService;
-    private final UserRepository userRepository;
+    private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -33,7 +33,7 @@ public class LoginService {
         String refreshToken = jwtTokenProvider.createRefreshToken(user.getId());
 
         // refresh token이 이미 존재하면 새로 갱신하고, 없어도 다시 발급한다.
-        saveRefreshToken(user, refreshToken);
+        tokenService.saveRefreshToken(user, refreshToken);
 
         return LoginResponse.of(accessToken, refreshToken);
     }
@@ -44,9 +44,5 @@ public class LoginService {
         }
     }
 
-    @Transactional
-    public void saveRefreshToken(UserAccount user, String refreshToken) {
-        user.setRefreshToken(refreshToken);
-        userRepository.save(user);
-    }
+
 }

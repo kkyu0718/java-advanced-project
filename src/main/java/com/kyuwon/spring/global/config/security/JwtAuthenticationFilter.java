@@ -1,6 +1,8 @@
 package com.kyuwon.spring.global.config.security;
 
 
+import com.kyuwon.spring.domain.user.repository.UserRepository;
+import com.kyuwon.spring.domain.user.service.UserFindService;
 import com.kyuwon.spring.global.common.error.exception.BusinessException;
 import com.kyuwon.spring.global.common.error.exception.ErrorCode;
 import com.kyuwon.spring.global.config.security.jwt.JwtTokenProvider;
@@ -29,6 +31,7 @@ import java.io.IOException;
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserFindService userFindService;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
@@ -42,7 +45,14 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         try {
             if (StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)) {
                 Authentication authentication = jwtTokenProvider.getAuthentication(token);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+
+                // refresh token 이 db에 저장되어 있지 않다면 로그아웃한 유저이므로 제한해준다.
+                Long userId = Long.parseLong(authentication.getName());
+                if(userFindService.findById(userId).getRefreshToken() != null) {
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    request.setAttribute("exception", ErrorCode.USER_LOGOUTED);
+                }
             }
         } catch (io.jsonwebtoken.security.SecurityException | MalformedJwtException e) {
             request.setAttribute("exception", ErrorCode.INVALID_JWT_SIGNATURE);

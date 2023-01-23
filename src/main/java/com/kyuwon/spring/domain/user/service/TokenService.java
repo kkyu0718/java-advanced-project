@@ -26,8 +26,13 @@ public class TokenService {
 
         checkRefreshToken(dbToken, refreshToken);
 
-        String newToken = jwtTokenProvider.createAccessToken(userId);
-        return new TokenResponse(newToken);
+        String newAccessToken = jwtTokenProvider.createAccessToken(userId);
+        String newRefreshToken = jwtTokenProvider.createRefreshToken(userId);
+
+        // db의 refresh token 갱신
+        saveRefreshToken(userAccount, newRefreshToken);
+
+        return new TokenResponse(newAccessToken, newRefreshToken);
     }
 
     private void checkRefreshToken(String dbToken, String refreshToken) {
@@ -38,5 +43,11 @@ public class TokenService {
         if(!dbToken.equals(refreshToken.substring(JwtTokenProvider.TOKEN_PREFIX.length()))) {
             throw new BusinessException(ErrorCode.REFRESH_TOKEN_EXPIRED);
         }
+    }
+
+    @Transactional
+    public void saveRefreshToken(UserAccount user, String refreshToken) {
+        user.setRefreshToken(refreshToken);
+        userRepository.save(user);
     }
 }
