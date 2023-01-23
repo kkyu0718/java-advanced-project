@@ -5,6 +5,7 @@ import com.kyuwon.spring.domain.user.dto.request.SignUpRequest;
 import com.kyuwon.spring.domain.user.dto.response.LoginResponse;
 import com.kyuwon.spring.domain.user.dto.response.TokenResponse;
 import com.kyuwon.spring.domain.user.service.LoginService;
+import com.kyuwon.spring.domain.user.service.LogoutService;
 import com.kyuwon.spring.domain.user.service.TokenService;
 import com.kyuwon.spring.global.common.api.ApiResponse;
 import com.kyuwon.spring.global.common.api.ResponseCode;
@@ -28,6 +29,7 @@ public class AuthController {
     private final SignUpService signUpService;
     private final LoginService loginService;
     private final TokenService tokenService;
+    private final LogoutService logoutService;
 
     @PostMapping("/signup")
     public ResponseEntity<ApiResponse<SignUpResponse>> signUp(@Validated @RequestBody SignUpRequest request) {
@@ -50,6 +52,13 @@ public class AuthController {
                 request.password()
         );
         return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(ResponseCode.USER_LOGIN_SUCCESS, user));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse> logout(Principal principal) {
+        Long userId = Long.parseLong(principal.getName());
+        logoutService.logoutUser(userId);
+        return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse(ResponseCode.USER_LOGOUT_SUCCESS));
     }
 
     // refreshToken 재발급
