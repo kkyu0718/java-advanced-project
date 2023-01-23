@@ -22,7 +22,7 @@ server:
 jwt:
   secret: secretadfhoquiwerhioufhsduifhasoifdhioafuisadhuifasidfn
   refresh-token-validity: 3600  # 1??
-  access-token-validity: 60 # 1?
+  access-token-validity: 300 # 5?
 
 ---
 

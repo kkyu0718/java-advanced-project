@@ -45,7 +45,7 @@ public class SignUpService {
                 .name(name)
                 .email(email)
                 .password(passwordEncoder.encode(password))
-                .authority(Authority.USER)
+                .authority(Set.of(Authority.USER))
                 .address(address)
                 .build();
 
