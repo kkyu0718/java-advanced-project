@@ -6,4 +6,5 @@
 - [ ] social login
 - [ ] querydsl
 - [x] error handler 다시 정리
+- [ ] refresh token redis 저장으로 개선
 
