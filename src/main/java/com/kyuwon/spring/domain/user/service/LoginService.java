@@ -1,7 +1,6 @@
 package com.kyuwon.spring.domain.user.service;
 
 import com.kyuwon.spring.domain.user.domain.UserAccount;
-import com.kyuwon.spring.domain.user.repository.UserRepository;
 import com.kyuwon.spring.global.common.error.exception.BusinessException;
 import com.kyuwon.spring.global.common.error.exception.ErrorCode;
 import com.kyuwon.spring.global.config.security.jwt.JwtTokenProvider;
@@ -18,7 +17,6 @@ import java.util.List;
 @Transactional
 @Service
 public class LoginService {
-    private final UserRepository userRepository;
     private final UserFindService userFindService;
     private final TokenService tokenService;
     private final PasswordEncoder passwordEncoder;

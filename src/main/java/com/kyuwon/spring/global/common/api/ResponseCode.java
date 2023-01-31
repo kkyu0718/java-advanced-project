@@ -11,6 +11,7 @@ public enum ResponseCode {
     USER_CREATED(HttpStatus.CREATED, "유저 회원가입에 성공하였습니다."),
     USER_LOGIN_SUCCESS(HttpStatus.OK, "유저 로그인에 성공하였습니다."),
     USER_LOGOUT_SUCCESS(HttpStatus.OK, "유저 로그아웃에 성공하였습니다."),
+    PAGED_USERS_FOUND(HttpStatus.OK, "유저 전체 조회에 성공하였습니다."),
 
     // jwt
     REFRESH_TOKEN(HttpStatus.CREATED, "토큰 재발급에 성공하였습니다." );
