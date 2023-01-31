@@ -1,16 +1,12 @@
 package com.kyuwon.spring.domain.user.service;
 
 import com.kyuwon.spring.domain.user.domain.RefreshToken;
-import com.kyuwon.spring.domain.user.domain.UserAccount;
 import com.kyuwon.spring.domain.user.repository.TokenRedisRepository;
-import com.kyuwon.spring.domain.user.repository.UserRepository;
 import com.kyuwon.spring.global.common.error.exception.BusinessException;
 import com.kyuwon.spring.global.common.error.exception.ErrorCode;
 import com.kyuwon.spring.global.config.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +19,6 @@ import java.util.List;
 public class TokenService {
     private final JwtTokenProvider jwtTokenProvider;
     private final TokenRedisRepository tokenRedisRepository;
-    private final RedisTemplate redisTemplate;
 
     @Transactional
     public List<String> refreshToken(String refreshToken, Long userId) {

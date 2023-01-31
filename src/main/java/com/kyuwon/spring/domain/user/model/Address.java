@@ -1,10 +1,7 @@
 package com.kyuwon.spring.domain.user.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
 import lombok.*;
-
-import java.util.Set;
+import javax.persistence.Embeddable;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)

@@ -29,7 +29,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 /**
  * Security 설정 Config
  */
-//TODO : spring security 설정 - access, refresh token
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
@@ -45,7 +44,7 @@ public class SecurityConfig {
 
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
-        return web -> web.ignoring().requestMatchers("/docs/**");
+        return web -> web.ignoring().antMatchers("/docs/**");
     }
 
     @Bean
@@ -76,9 +75,9 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(antz -> antz
-                        .requestMatchers(HttpMethod.GET, GET_PERMITTED_URLS).permitAll()
-                        .requestMatchers(HttpMethod.POST, POST_PERMITTED_URLS).permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/board/admin").hasRole("ADMIN")
+                        .antMatchers(HttpMethod.GET, GET_PERMITTED_URLS).permitAll()
+                        .antMatchers(HttpMethod.POST, POST_PERMITTED_URLS).permitAll()
+                        .antMatchers(HttpMethod.GET, "/api/board/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .build();
